@@ -2,7 +2,7 @@
   <div>
     <h1>Bienvenido</h1>
     <button @click="redirectToRegister">Registro de Usuario</button>
-    <button @click="handleInicioSesion">Inicio de Sesión</button>
+    <button @click="redirectToLogin">Inicio de Sesión</button>
   </div>
 </template>
 
@@ -13,8 +13,8 @@ export default {
       this.$router.push('/register')
       console.log('Botón de Registro clickeado');
     },
-    handleInicioSesion() {
-      // Lógica para manejar el inicio de sesión
+    redirectToLogin() {
+      this.$router.push('/login')
       console.log('Botón de Inicio de Sesión clickeado');
     },
   },
