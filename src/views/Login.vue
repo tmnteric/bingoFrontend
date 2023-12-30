@@ -30,11 +30,13 @@ export default {
         email: this.email,
         password: this.password,
       });
+      // se llama la api con sus parametros a travez de fetch
       const response = await fetch(`http://localhost:7000/api/users/login?email=${this.email}&password=${this.password}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        //solicitud las credenciales 
         credentials: 'include',
       });
 
