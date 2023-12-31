@@ -27,6 +27,7 @@ export default {
   methods: {
     async guardarUsuario() {
       try {
+        // se utiliza fetch para la llamada de la api 
         const response = await fetch("http://localhost:7000/api/users", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
