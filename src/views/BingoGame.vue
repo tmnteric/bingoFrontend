@@ -23,6 +23,10 @@
             </table>
       </div>
     </div>
+    <div class="balota">
+        <h3>Balota Actual</h3>
+        <div class="circulo">{{numeroBalota}}</div>
+    </div>
   </div>
 </template>
 
@@ -34,6 +38,7 @@ export default {
       carton: null,
       cartonGenerado: false,
       mostrarCarton: false,
+      numeroBalota: null,
     };
   },
 //   mounted() {
@@ -48,10 +53,15 @@ export default {
         this.cartonGenerado = true;
         this.mostrarCarton = true;
         console.log("carton de bingo generado:", carton);
+
+        setInterval(this.mostrarBalota, 5000); 
       } catch (error) {
         console.error("error al generar el carton de bingo:", error);
       }
     },
+    mostrarBalota(){
+        this.numeroBalota =Math.floor(Math.random()*75)+1;
+    }
   },
 };
 </script>
@@ -70,6 +80,25 @@ export default {
 
   th{
 background-color: #f2f2f2;
+  }
+
+  .balota{
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+
+  .circulo{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 20px;
+    margin: 0 auto;
+    padding-top: 10px;
   }
 
 </style>
