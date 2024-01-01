@@ -26,6 +26,9 @@
         </table>
       </div>
     </div>
+    <div class="boton-bingo">
+        <button @click="verificarBotonBingo" :disabled="!cartonGenerado">BINGO</button>
+    </div>
     <div class="balota">
         <h3>Balota Actual</h3>
         <div class="circulo">{{numeroBalota}}</div>
@@ -34,6 +37,8 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
+
 export default {
   name: "BingoGame",
   data() {
@@ -44,6 +49,8 @@ export default {
       numeroBalota: null,
       numerosMarcados: [],
       numerosBalotas: [],
+      botonBingo: false,
+
     };
   },
   methods: {
@@ -58,16 +65,20 @@ export default {
         this.mostrarCarton = true;
         console.log("carton de bingo generado:", carton);
 
-        setInterval(this.mostrarBalota, 5000); 
+        // Iniciar el intervalo solo si no se ha generado todas las balotas
+        if (this.numerosBalotas.length < 75) {
+          this.intervaloBalotas = setInterval(this.mostrarBalota, 5000);
+        }
       } catch (error) {
         console.error("error al generar el carton de bingo:", error);
       }
     },
     // funcion que permite marcar los numeros en el tarjeton 
     marcarNumero(numero) {
-      if (!this.numerosMarcados.includes(numero)) {
+      if (!this.numerosMarcados.includes(numero) && this.numerosBalotas.includes(numero)) {
         this.numerosMarcados.push(numero);
         console.log("Numeros Marcados:", this.numerosMarcados);
+        // this.verificarGanador();
       }
     },
     // funcion que genera una balota cada 5 segundos en un rango del 1 al 75 
@@ -84,9 +95,61 @@ export default {
             this.numerosBalotas.push(numero);
             console.log("numeros de la balota: ",this.numerosBalotas)
 
+            // Detener el intervalo cuando se generan todas las balotas
+            if (this.numerosBalotas.length === 75) {
+              clearInterval(this.intervaloBalotas);
+            }
         }else{
             this.mostrarBalota();
         }
+    },
+
+    verificarBotonBingo(){
+        this.botonBingo = true;
+        this.verificarGanador();
+    },
+
+    verificarGanador(){
+        if (this.botonBingo){
+          if (this.botonBingo && this.verificarLineaHorizontal){
+            Swal.fire('Ganaste')
+            console.log('ganador de linea horizontal');
+            this.$router.push("/");
+          }else{
+            console.log('no hay ganador aun ');
+          }
+        }
+    },
+
+    verificarLineaHorizontal(){
+        console.log("verficacion de linea horizontal");
+        if(!this.carton || typeof this.carton !== 'object'){
+            console.log('el carton no es un objeto valido');
+            return false;
+        }
+
+        for(const letra in this.carton){
+            if(this.marcoNumeros(this.carton[letra])){
+                console.log('linea horizontal encontrada');
+                return true;
+            }
+        }
+
+        console.log('no hay linea horizontal ');
+        return false;
+    },
+
+    marcoNumeros(linea){
+        if(!Array.isArray(linea)){
+            console.log('la linea no es un array valido');
+            return false;
+        }
+        for (const numero of linea){
+            if(!this.numerosMarcados.includes(numero)){
+                return false;
+            }
+        }
+        return true;
     }
   },
 };
@@ -130,6 +193,15 @@ background-color: #f2f2f2;
     font-size: 20px;
     margin: 0 auto;
     padding-top: 10px;
+  }
+
+  .boton-bingo {
+    margin-top: 20px;
+  }
+
+  .boton-bingo button {
+    font-size: 18px;
+    padding: 10px 20px;
   }
 
 </style>
