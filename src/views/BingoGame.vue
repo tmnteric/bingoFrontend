@@ -43,11 +43,14 @@ export default {
       mostrarCarton: false,
       numeroBalota: null,
       numerosMarcados: [],
+      numerosBalotas: [],
     };
   },
   methods: {
     async generarCartonBingo() {
       try {
+        this.numerosBalotas =[];
+
         const response = await fetch("http://localhost:7000/api/tarjeton/generar");
         const carton = await response.json();
         this.carton = carton;
@@ -69,7 +72,21 @@ export default {
     },
     // funcion que genera una balota cada 5 segundos en un rango del 1 al 75 
     mostrarBalota(){
-        this.numeroBalota =Math.floor(Math.random()*75)+1;
+
+        let numero;
+        do{
+            numero =this.numeroBalota =Math.floor(Math.random()*75)+1;
+        }while(this.numerosBalotas.includes(numero));
+
+        if(!this.numerosBalotas.includes(numero)){
+            this.numeroBalota = numero;
+            
+            this.numerosBalotas.push(numero);
+            console.log("numeros de la balota: ",this.numerosBalotas)
+
+        }else{
+            this.mostrarBalota();
+        }
     }
   },
 };
