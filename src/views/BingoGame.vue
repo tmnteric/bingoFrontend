@@ -15,12 +15,15 @@
                     <th>O</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr v-for="(column, letra) in carton" :key="letra">
-                <td v-for="numero in column" :key="numero">{{numero}}</td>
-                </tr>
-            </tbody>
-            </table>
+           <tbody>
+            <tr v-for="(column, letra) in carton" :key="letra">
+              <td v-for="numero in column" :key="numero">
+                <button @click="marcarNumero(numero)"
+                :class="{ numeromarcado: numerosMarcados.includes(numero) }">{{ numero }}</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <div class="balota">
@@ -39,11 +42,9 @@ export default {
       cartonGenerado: false,
       mostrarCarton: false,
       numeroBalota: null,
+      numerosMarcados: [],
     };
   },
-//   mounted() {
-//     this.generarCartonBingo();
-//   },
   methods: {
     async generarCartonBingo() {
       try {
@@ -59,6 +60,14 @@ export default {
         console.error("error al generar el carton de bingo:", error);
       }
     },
+    // funcion que permite marcar los numeros en el tarjeton 
+    marcarNumero(numero) {
+      if (!this.numerosMarcados.includes(numero)) {
+        this.numerosMarcados.push(numero);
+        console.log("Numeros Marcados:", this.numerosMarcados);
+      }
+    },
+    // funcion que genera una balota cada 5 segundos en un rango del 1 al 75 
     mostrarBalota(){
         this.numeroBalota =Math.floor(Math.random()*75)+1;
     }
@@ -80,6 +89,11 @@ export default {
 
   th{
 background-color: #f2f2f2;
+  }
+
+  .numeromarcado {
+    background-color: red;
+    color: white;
   }
 
   .balota{
