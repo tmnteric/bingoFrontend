@@ -61,7 +61,7 @@ export default {
         }
 
         // Si ha pasado un minuto y solo hay un jugador, redirigir a la vista de inicio
-        if (this.jugadoresConectados === 1 && !this.tiempoInicioEspera 
+        else if (this.jugadoresConectados === 1 && !this.tiempoInicioEspera 
         //   Date.now() - this.tiempoInicioEspera > this.tiempoMax
         ) {
           console.log("Solo un jugador y tiempo máximo alcanzado. Redirigiendo a la vista de inicio.");
