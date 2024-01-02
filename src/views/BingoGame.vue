@@ -252,20 +252,24 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
   table {
     border-collapse: collapse;
     width: 40%;
+    margin-top: 20px;
+    background-color: #7fffd4; /* Color azul */
   }
 
-  th,td {
-    border:ipx solid #ddd;
-    padding: box;
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 10px;
     text-align: center;
+    font-size: 16px;
   }
 
-  th{
-background-color: #f2f2f2;
+  th {
+    background-color: #f2f2f2;
   }
 
   .numeromarcado {
@@ -273,32 +277,41 @@ background-color: #f2f2f2;
     color: white;
   }
 
-  .balota{
+  .balota {
+    /* position: fixed; */
     float: right;
-    margin-top: 20px;
-    margin-right: 20px;
+    margin-top: 0%;
+    margin-right: 30%;
+ 
   }
 
-  .circulo{
-    width: 50px;
-    height: 50px;
+  .circulo {
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    background-color: #ccc;
+    background-color: #7fffd4; 
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    font-size: 20px;
+    align-items: center;
+    font-size: 30px;
     margin: 0 auto;
-    padding-top: 10px;
   }
 
-  .boton-bingo {
+   .boton-bingo {
     margin-top: 20px;
+    display: left;
   }
 
   .boton-bingo button {
-    font-size: 18px;
+    font-size: 20px;
     padding: 10px 20px;
+    background-color: #7fffd4; 
+    color: #808080;
+    border: none;
+    cursor: pointer;
   }
 
+  .boton-bingo button:hover {
+    background-color: #5ebf99; 
+  }
 </style>

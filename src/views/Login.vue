@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <h2>Iniciar Sesión</h2>
-    <form @submit.prevent="validarUsuario">
+  <div class="login-container">
+    <h2 class="login-title">Iniciar Sesión</h2>
+    <form @submit.prevent="validarUsuario" class="login-form">
       <label for="email">Correo Electrónico</label>
       <input type="email" id="email" v-model="email" required/>
       <label for="password">Contraseña:</label>
       <input type="password" id="password" v-model="password" required/>
-      <button type="submit">Validar</button>
+      <button type="submit" class="login-button">Validar</button>
     </form>
   </div>
 </template>
@@ -73,3 +73,48 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #7fffd4;
+  margin: 0; 
+}
+
+.login-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  width: 300px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin: 10px 0;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.login-button {
+  background-color: #808080;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #696969;
+}
+</style>

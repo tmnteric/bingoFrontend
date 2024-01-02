@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="lobby-container">
     <h2>LOBBY</h2>
     <p>
       Bienvenido a la sala de espera. Esperando a que se conecten más
-      usuarios...
+      jugadores para ingresar al increíble juego de bingo, ¡el mejor juego del mundo!
     </p>
   </div>
 </template>
@@ -95,3 +95,29 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.lobby-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #7fffd4;
+  margin: 0;
+  color: #333; 
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+</style>

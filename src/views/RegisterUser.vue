@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h2>Registro de Usuario</h2>
-    <form @submit.prevent="guardarUsuario">
+  <div class="register-container">
+    <h2 class = "register-tittle">Registro de Usuario</h2>
+    <form @submit.prevent="guardarUsuario" class="register-form">
       <label for="nombre">Nombre</label>
       <input type="text" id="nombre" v-model="nombre" required />
       <label for="email">Correo Electronico</label>
@@ -49,3 +49,48 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #7fffd4;
+  margin: 0; 
+}
+
+.register-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.register-form {
+  width: 300px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin: 10px 0;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.register-button {
+  background-color: #808080;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.register-button:hover {
+  background-color: #696969;
+}
+</style>
