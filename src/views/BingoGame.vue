@@ -111,12 +111,31 @@ export default {
 
     verificarGanador(){
         if (this.botonBingo){
-          if (this.botonBingo && this.verificarLineaHorizontal){
+          if (this.botonBingo && this.verificarLineaHorizontal()){
             Swal.fire('Ganaste')
             console.log('ganador de linea horizontal');
             this.$router.push("/");
-          }else{
-            console.log('no hay ganador aun ');
+          }else if (this.botonBingo && this.verificarLineaVertical()){
+            Swal.fire('Ganaste')
+            console.log('ganador de linea vertical');
+            this.$router.push("/");
+          }else if(this.botonBingo && this.verificarLineaDiagonal()){
+            Swal.fire('Ganaste')
+            console.log('ganador linea en diagonal');
+            this.$router.push('/')
+          }else if(this.botonBingo && this.verificarEsquinas()){
+            Swal.fire('Ganaste')
+            console.log("ganador con 4 esquinas");
+            this.$router.push("/")
+          }else if(this.botonBingo && this.verficarCartonPleno()){
+            Swal.fire("Ganaste")
+            console.log("ganador con el carton lleno");
+            this.$router.push('/')
+          }
+          else{
+            Swal.fire("Has sido descalificado")
+            console.log('jugador descalificado ');
+            this.$router.push('/')
           }
         }
     },
@@ -130,7 +149,7 @@ export default {
 
         for(const letra in this.carton){
             if(this.marcoNumeros(this.carton[letra])){
-                console.log('linea horizontal encontrada');
+                console.log('linea horizontal');
                 return true;
             }
         }
@@ -139,9 +158,87 @@ export default {
         return false;
     },
 
+    verificarLineaVertical(){
+        if (!this.carton || typeof this.carton !== 'object'){
+            return false;
+        }
+
+        // for( const letra in this.carton){
+        //     const columna =this.carton[letra];
+        //     if (this.marcoNumeros(columna)){
+        //         console.log("linea vertical");
+        //         return true;
+        //     }
+        // }
+
+        for(let i = 0; i< this.carton.b.length; i++){
+          const columna = [
+            this.carton.b[i],
+            this.carton.i[i],
+            this.carton.n[i],
+            this.carton.g[i],
+            this.carton.o[i],
+          ];
+          if (this.marcoNumeros(columna)){
+            console.log("lineas vertical");
+            return true;
+          }
+        }
+        console.log('no hay linea vertical');
+        return false;
+    },
+
+    verificarLineaDiagonal(){
+        if(!this.carton || typeof this.carton !== 'object'){
+            return false;
+        }
+        const diagonales = [
+            [this.carton.b[0], this.carton.i[1], this.carton.n[2], this.carton.g[3], this.carton.o[4]],
+            [this.carton.b[4], this.carton.i[3], this.carton.n[2], this.carton.g[1], this.carton.o[0]]
+        ];
+        for (const diagonal of diagonales){
+            if(this.marcoNumeros(diagonal)){
+                console.log("linea diagonal");
+                return true;
+            }
+        }
+        console.log("no hay linea diagonal");
+        return false;
+    },
+
+    verificarEsquinas(){
+        if(!this.carton || typeof this.carton !== 'object'){
+            return false;
+        }
+        const esquinas =[
+            [this.carton.b[0], this.carton.o[4], this.carton.b[4], this.carton.o[0]]
+        ];
+        for (const esquina of esquinas){
+            if(this.marcoNumeros(esquina)){
+                console.log('esquinas');
+                return true;
+            }
+        }
+        console.log("no formo las 4 esquinas");
+        return false;
+    },
+
+    verficarCartonPleno(){
+        if(!this.carton || typeof this.carton !== 'object'){
+            return false;
+        }
+        for(const letra in this.carton){
+            if(!this.marcoNumeros(this.carton[letra])){
+                return false;
+            }
+        }
+        console.log("carton lleno");
+        return true;
+    },
+
     marcoNumeros(linea){
         if(!Array.isArray(linea)){
-            console.log('la linea no es un array valido');
+            // console.log('la linea no es un array valido');
             return false;
         }
         for (const numero of linea){
