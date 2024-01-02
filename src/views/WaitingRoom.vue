@@ -1,5 +1,6 @@
 <template>
   <div class="lobby-container">
+    <h1>El Bingo Gran Buda</h1>
     <h2>LOBBY</h2>
     <p>
       Bienvenido a la sala de espera. Esperando a que se conecten más
@@ -108,13 +109,18 @@ export default {
   color: #333; 
 }
 
+  h1 {
+    font-size: 65px; 
+    color: #333; 
+  }
+
 h2 {
-  font-size: 24px;
+  font-size: 40px;
   margin-bottom: 20px;
 }
 
 p {
-  font-size: 18px;
+  font-size: 30px;
   text-align: center;
   max-width: 400px;
   margin: 0 auto;

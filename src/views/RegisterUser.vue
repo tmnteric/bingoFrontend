@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 export default {
   name: "RegisterUser",
   data() {
@@ -40,6 +41,7 @@ export default {
         if (response.ok) {
           this.$router.push("/");
         } else {
+          Swal.fire("Por favor valide que todos los campos esten llenos")
           console.error("Error al guardar usuario");
         }
       } catch (error) {
