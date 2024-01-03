@@ -1,24 +1,22 @@
-# bingo-vue-frontend
+# Proyecto de Juego de Bingo para SofkaU (Frontend)
 
-## Project setup
-```
-npm install
-```
+Este proyecto se centra en el desarrollo del frontend para un juego de bingo solictado por SofkaU. La tecnología utilizada para la implementación es Vue.js. El juego consta de varias vistas, la vista de inicio 'MainPage', que ofrece opciones para registrar un usuario o iniciar sesión.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- **Registro de Usuario ('RegisterUser'):**
+  - La vista de registro solicita información como nombre, correo y contraseña.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- **Inicio de Sesión ('Login'):**
+  - En la vista de inicio de sesión, se pide el correo y la contraseña para autenticar al usuario.
 
-### Lints and fixes files
-```
-npm run lint
-```
+Después de la autenticación, los usuarios son redirigidos a una vista de espera 'WaitingRoom', donde, si solo hay un jugador, se espera un minuto antes de regresar a la vista de inicio. Si se conectan más jugadores, son redirigidos a la vista del juego 'BingoGame'.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- **Juego de Bingo ('BingoGame'):**
+  - Aquí, los jugadores pueden generar su cartón de bingo mediante un botón específico. Además, hay un botón 'BINGO' que permite declarar la victoria si se cumplen los requisitos.
+
+## Enlaces Adicionales
+
+- **Backend del Proyecto:**
+  - [https://github.com/tmnteric/bingoBackend.git](enlace_al_repositorio_del_backend)
+
+- **Video Explicativo en YouTube::**
+  - [https://youtu.be/wgOXN_txL-U](enlace_al_video_en_youtube)
