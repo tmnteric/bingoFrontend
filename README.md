@@ -19,4 +19,4 @@ Después de la autenticación, los usuarios son redirigidos a una vista de esper
   - [https://github.com/tmnteric/bingoBackend.git](enlace_al_repositorio_del_backend)
 
 - **Video Explicativo en YouTube::**
-  - [https://youtu.be/wgOXN_txL-U](enlace_al_video_en_youtube)
+  - [https://youtu.be/wgOXN_txL-U](https://www.youtube.com/watch?v=wgOXN_txL-U&ab_channel=ericparra)
